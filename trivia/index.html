@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+            let buttons = document.getElementsByClassName("buttons");
+
+            for (let i = 0; i < buttons.length; i++) {
+                let button = buttons[i];
+                if (i === 4) {
+                    button.addEventListener('click', function() {
+                        correct(button);
+                    });
+                }
+                else {
+                    button.addEventListener('click', function() {
+                        wrong(button);
+                    });
+                }
+            }
+
+            let ansButton = document.getElementById("AnsButton");
+            ansButton.addEventListener('click', function() {
+                check(ansButton);
+            });
+
+            function check(ansButton) {
+                let ans = document.getElementById("name").value;
+                if(ans == "yes") {
+                    ansButton.style.backgroundColor = "green";
+                    document.querySelector('a').innerHTML = "Correct";
+                }
+                else {
+                    ansButton.style.backgroundColor = "red";
+                    document.querySelector('a').innerHTML = "Incorrect";
+                }
+            }
+
+            function wrong(button) {
+                let response = document.querySelector('p');
+                response.innerHTML = "Incorrect";
+
+                for (let i = 0; i < buttons.length; i++) {
+                    let b = buttons[i];
+                    if(b === button) {
+                        b.style.backgroundColor = "red";
+                    }
+                    else {
+                        b.style.backgroundColor = "#d9edff"
+                    }
+                }
+                console.log('wrong');
+            }
+
+            function correct(button) {
+                let response = document.querySelector('p');
+                response.innerHTML = "Correct!";
+
+                for (let i = 0; i < buttons.length; i++) {
+                    let b = buttons[i];
+                    if(b === button) {
+                        b.style.backgroundColor = "green";
+                    }
+                    else {
+                        b.style.backgroundColor = "#d9edff";
+                    }
+                }
+
+                console.log('correct');
+            }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>
+                    Which button is the correct choice?
+                </h3>
+                <p></p>
+                <div type="submit">
+                    <button class="buttons">
+                        Button. I am.
+                    </button>
+                    <button class="buttons">
+                        CLICK ME!!!
+                    </button>
+                    <button class="buttons">
+                        LOL
+                    </button>
+                    <button class="buttons">
+                        O_O
+                    </button>
+                    <button class="buttons">
+                        Correct Choice
+                    </button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                 <h3>
+                    Type yes
+                 </h3>
+                 <a></a>
+                 <div>
+                    <input autocomplete="off" id="name" type="text">
+                    <button type="submit" id="AnsButton">
+                        check
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
