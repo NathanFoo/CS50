@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+<form action="/sell" method="post">
+    <script src="static/buy.js"></script>
+    <h2>Sell</h2>
+    <select class="form-select form-select-lg w-20 mx-auto" name="symbol" placeholder="Symbol">
+        {% for stock in stocks %}
+            <option  value="{{ stock['symbol'] }}">{{ stock["symbol"] }}</option>
+        {% endfor %}
+    </select>
+    <hr>
+
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th class="smallCol">Shares</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><li>Amount:<input type="number" name="shares" id="shares" class="w-25"></input></li></td>
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn w-25 btn-primary">Sell</button>
+</form>
+{% endblock %}

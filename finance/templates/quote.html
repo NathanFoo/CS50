@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h2>Quote</h2>
+    <form action="/quote" method="post">
+        <input type="text" name="symbol" placeholder="Symbol" autocomplete="false" spellcheck="false">
+        <button type="submit" name="button">Quote</button>
+    </form>
+    <hr>
+
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th class="smallCol">Symbol</th>
+                <th class="largeCol">Name</th>
+                <th class="smallCol">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if symbol is not none %}
+                <td><li>Symbol: {{ symbol }}</li></td>
+                <td><li>Name: {{ name }}</li></td>
+                <td><li>Price: {{ price }}</li></td>
+            {% endif %}
+        </tbody>
+    </table>
+{% endblock %}

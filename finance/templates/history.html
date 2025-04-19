@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+
+    <script src="static/buy.js"></script>
+    <h2>History</h2>
+    <hr>
+
+
+    <div class="container text-center fs-6">
+        <div class="row align-items-start">
+            <div class="col lightGrey1 overflow-auto tall">
+                <h3> Purchased </h3>
+                <table class="table table-striped-columns">
+                    <thead>
+                        <tr>
+                            <th class="w-10">Symbol</th>
+                            <th class="w-20">Price</th>
+                            <th class="w-10">Shares</th>
+                            <th class="w-30">Date (mm-dd-yyyy)</th>
+                            <th class="w-30">Time (hh:mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in purchases %}
+                            <tr>
+                                <td>{{ item["symbol"] }}</td>
+                                <td>{{ "$%.2f" | format(item["purchases_price"]) }}</td>
+                                <td>{{ item["shares_bought"] }}</td>
+                                <td>{{ item["month"] }}-{{ item["day"] }}-{{ item["year"] }} </td>
+                                <td>{{ item["hour"] }}:{{ item["minute"] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col lightGrey2 overflow-auto tall">
+                <h3> Sold </h3>
+                <table class="table table-striped-columns">
+                    <thead>
+                        <tr>
+                            <th class="w-10">Symbol</th>
+                            <th class="w-20">Price</th>
+                            <th class="w-10">Shares</th>
+                            <th class="w-30">Date (mm-dd-yyyy)</th>
+                            <th class="w-30">Time (hh:mm)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in sells %}
+                            <tr>
+                                <td>{{ item["symbol"] }}</td>
+                                <td>{{ "$%.2f" | format(item["sell_price"]) }}</td>
+                                <td>{{ item["shares_sold"] }}</td>
+                                <td>{{ item["month"] }}-{{ item["day"] }}-{{ item["year"] }} </td>
+                                <td>{{ item["hour"] }}:{{ item["minute"] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

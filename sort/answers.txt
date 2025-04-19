@@ -1,0 +1,17 @@
+sort1 uses: Bubble sort
+
+How do you know?: When tested with sorted list and random list time complex
+did change. Bubble sort big O and omega differ in time complex by n^2 and n repectively.
+
+sort2 uses: Merge sort
+
+How do you know?: Able to sort random list really fast and merge sort
+is the only one of three that have a nlog(n) sort speed and not n^2
+
+sort3 uses: Selection Sort
+
+How do you know?: When tested with sorted list and random list time complex
+did not change. Selection sort big O and omega share the same time complexity
+and as seen no change in time complex.
+
+

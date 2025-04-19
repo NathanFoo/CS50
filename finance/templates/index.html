@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stoinks
+{% endblock %}
+
+{% block main %}
+
+
+    <script src="static/buy.js"></script>
+    <h2>Stoinks</h2>
+    <hr>
+
+    <div class="position-relative container-sm">
+        <span>Balance: {{ balance }}</span>
+    </div>
+
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th class="w-10">Symbol</th>
+                <th class="w-40">Name</th>
+                <th class="w-10">Shares</th>
+                <th class="w-20">Price</th>
+                <th class="w-20">Held Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock["symbol"] }}</td>
+                <td>{{ stock["name"] }}</td>
+                <td>{{ stock["shares"] }}</td>
+                <td>{{ "$%.2f" | format(stock["price"]) }}</td>
+                <td>{{ "$%.2f" | format(stock["holding"]) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <div class="position-relative container-sm">
+        <span class="position-relative start-25">Total Value Held: {{ total }}</span>
+    </div>
+{% endblock %}

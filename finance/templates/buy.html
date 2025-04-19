@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+        <script src="static/buy.js"></script>
+        <h2>Buy</h2>
+        <input type="text" name="symbol" placeholder="Symbol" autocomplete="false" spellcheck="false">
+        <hr>
+
+        <table class="table table-striped-columns">
+            <thead>
+                <tr>
+                    <th class="smallCol">Shares</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td><li>Amount:<input type="number" name="shares" id="shares" class="w-25"></input></li></td>
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn w-25 btn-primary">Buy</button>
+    </form>
+{% endblock %}
