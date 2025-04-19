@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <title>Birthdays</title>
+        <!-- <script src="static/index.js"></script> -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+            const months = { // creates months in a way that can be swaped for another language
+                en: ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"]
+            };
+
+            monthSelect = document.getElementById("months");
+
+            let lang = "en";
+            months[lang].forEach((month, index) => {
+                const option = document.createElement("option");
+                option.value = index + 1;
+                option.textContent = month;
+                monthSelect.appendChild(option);
+                })
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Birthdays</h1>
+        </div>
+        <div class="container">
+            <div class="section">
+
+                <h2>Add a Birthday</h2>
+                <!-- TODO: Create a form for users to submit a name, a month, and a day -->
+                 <form action="/" method="post">
+                    <input autocomplete="off" autofocus name="name" placeholder="name" type="text">
+                    <input name="day" min="1" max="31" placeholder="DD" type="number">
+                    <select name="months" id="months">
+                        <!-- months generated via javascript -->
+                    </select>
+                    <button name="submit" type="submit">Submit</button>
+                 </form>
+            </div>
+
+            <div class="section">
+
+                <h2>All Birthdays</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- TODO: Loop through the database entries to display them in this table -->
+                        {% for person in birthdays %}
+                            <tr>
+                                <td>
+                                    {% if person.name %}
+                                        <li>{{ person.name }}</li>
+                                    {% else %}
+                                        <li>Empty</li>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <li>{{ months[person.month] }} {{ person.day }}</li>
+                                </td>
+                                <!-- <td class="columnSmall"><button>Edit</button></td> -->
+                                <td class="columnSmall">
+                                    <form action="/{{ person.id }}" method="submit">
+                                        <input type="hidden" value="{{ person.id }}">
+                                        <button type="submit" name="{{ person.id }}">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
